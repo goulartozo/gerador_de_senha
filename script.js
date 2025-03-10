@@ -25,5 +25,29 @@ function gerarSenha() {
     if (checkLetraMinuscula.checked) caracter += possiveisLetrasMinusculas;
     if (checkNumero.checked) caracter += possiveisNumeros;
     if (checkSimbolo.checked) caracter += possiveisSimbolos;
+    /*console.log(caracter);*/
+    
+    for (let index = 0; index < defineTamanhoSenha.value; index++) {
+        const aleatorio = Math.floor(Math.random() * caracter.length);
+        senha = senha + caracter[aleatorio];
+        /*console.log(senha);*/
+    }
+
+    mostraSenha.value = senha;
 
 }
+
+botaoCopiar.addEventListener("click" , () => {
+    if (mostraSenha.value === ""){
+        alert("Gere uma senha antes de copiar!");
+        return;
+    } else {
+        navigator.clipboard.writeText(mostraSenha.value);
+        alert("Senha copiada!");
+    }
+});
+
+botaoGerar.addEventListener("click", gerarSenha);
+
+
+    
